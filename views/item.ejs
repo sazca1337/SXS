@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= item.name %> - Магазин</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <%- include('navigation') %>
+    
+    <div class="item-page">
+        <div class="item-container">
+            <div class="item-image">
+                <img src="<%= item.image %>" alt="<%= item.name %>">
+            </div>
+            <div class="item-details">
+                <h1 id="item-name"><%= item.name %></h1>
+                <p class="item-category">Категория: <%= item.category %></p>
+                <p class="item-subcategory">Подкатегория: <%= item.subcategory %></p>
+                <p class="item-description"><%= item.description %></p>
+                <p class="item-price"><%= item.price %> р.</p>
+                
+                <div class="item-options">
+                    <div class="size-selector">
+                        <h3>Размеры:</h3>
+                        <div class="size-buttons">
+                            <% item.sizes.forEach(size => { %>
+                                <button class="size-button"><%= size %></button>
+                            <% }); %>
+                        </div>
+                    </div>
+                    
+                    <div class="color-selector">
+                        <h3>Цвета:</h3>
+                        <div class="color-buttons">
+                            <% item.colors.forEach(color => { %>
+                                <button class="color-button"><%= color %></button>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item-actions">
+                    <button class="buy-button" id="buyButton">КУПИТЬ</button>
+                </div>
+                <div class="shipping-info">
+                    <p><%= item.shipping %></p>
+                </div>
+            </div>
+        </div>
+        <div class="back-to-catalog">
+            <a href="/">← Вернуться в каталог</a>
+        </div>
+    </div>
+    
+    <!-- Purchase Form Modal -->
+    <div class="purchase-modal" id="purchaseModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-container">
+                <div class="form-container">
+                    <h2>Форма заказа</h2>
+                    <form id="purchaseForm">
+                        <div class="form-group">
+                            <label for="fullName">ФИО</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Номер телефона</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telegram">Telegram ID</label>
+                            <input type="text" id="telegram" name="telegram" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Город</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectedSize">Выбранный размер</label>
+                            <input type="text" id="selectedSize" name="selectedSize" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectedColor">Выбранный цвет</label>
+                            <input type="text" id="selectedColor" name="selectedColor" readonly>
+                        </div>
+                        <button type="submit" class="submit-button">Оформить заказ</button>
+                    </form>
+                </div>
+                <div class="order-summary">
+                    <h2>Информация о товаре</h2>
+                    <div class="order-item">
+                        <img src="<%= item.image %>" alt="<%= item.name %>">
+                        <div class="order-item-details">
+                            <h3><%= item.name %></h3>
+                            <p class="order-item-price"><%= item.price %> р.</p>
+                            <p class="order-item-category"><%= item.category %> / <%= item.subcategory %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('footer') %>
+    <script src="/js/index.js"></script>
+    <script src="/js/item.js"></script>
+</body>
+</html> 

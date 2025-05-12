@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('navigation') %>
+    <div class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+            <div class="carousel-item">
+                <p>AUTUMN COLLECTION 2025</p>
+            </div>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="banner-frame">
+            <img src="/images/banner-frame.png" alt="banner-frame">
+            <div class="action">
+                <a href="/">КУПИТЬ</a>
+            </div>
+        </div>
+        <div class="banner-frame">
+            <img src="/images/banner-frame2.png" alt="banner-frame">
+        </div>
+        <div class="banner-frame">
+            <img src="/images/banner-frame3.png" alt="banner-frame">
+            <div class="action">
+                <a href="/">Каталог</a>
+                <a href="/">О колекции</a>
+            </div>
+        </div>
+        <div class="banner-frame">
+            <img src="/images/banner-frame4.png" alt="banner-frame">
+            <div class="action">
+                <a href="/">Каталог</a>
+                <a href="/">О колекции</a>
+            </div>
+        </div>
+    </div>
+    <div class="catalog">
+        <div class="category">
+            <a href="/category/all" class="<%= typeof currentCategory !== 'undefined' && currentCategory === 'all' ? 'active' : '' %>">Все</a>
+            <a href="/category/Uberallen" class="<%= typeof currentCategory !== 'undefined' && currentCategory === 'Uberallen' ? 'active' : '' %>">Uberallen</a>
+            <a href="/category/Premium" class="<%= typeof currentCategory !== 'undefined' && currentCategory === 'Premium' ? 'active' : '' %>">Premium</a>
+            <a href="/subcategory/Футболки" class="<%= typeof currentSubcategory !== 'undefined' && currentSubcategory === 'Футболки' ? 'active' : '' %>">Футболки</a>
+            <a href="/subcategory/Худи" class="<%= typeof currentSubcategory !== 'undefined' && currentSubcategory === 'Худи' ? 'active' : '' %>">Худи</a>
+            <a href="/subcategory/Штаны" class="<%= typeof currentSubcategory !== 'undefined' && currentSubcategory === 'Штаны' ? 'active' : '' %>">Штаны</a>
+            <a href="/subcategory/Шорты" class="<%= typeof currentSubcategory !== 'undefined' && currentSubcategory === 'Шорты' ? 'active' : '' %>">Шорты</a>
+            <a href="/subcategory/Куртки" class="<%= typeof currentSubcategory !== 'undefined' && currentSubcategory === 'Куртки' ? 'active' : '' %>">Куртки</a>
+            <a href="/subcategory/Акссесуары" class="<%= typeof currentSubcategory !== 'undefined' && currentSubcategory === 'Акссесуары' ? 'active' : '' %>">Акссесуары</a>
+        </div>
+        
+        <div class="catalog-items">
+            <% if (items && items.length > 0) { %>
+                <% items.forEach((item) => { %>
+                    <a href="/item/<%= item.id %>" class="catalog-item">
+                        <img src="<%= item.image %>" alt="<%= item.name %>">
+                        <div class="catalog-item-info">
+                            <p><%= item.name %></p>
+                            <p><%= item.shipping %></p>
+                            <p><%= item.price %> р.</p>
+                        </div>
+                    </a>
+                <% }); %>
+            <% } else { %>
+                <p class="no-items">Товары не найдены</p>
+            <% } %>
+        </div>
+    </div>
+    <%- include('footer') %>
+    <script src="/js/index.js"></script>
+</body>
+</html>
